@@ -91,9 +91,14 @@ def display_results(
 
     if max_len:
         fig.update_xaxes(range=[train_len, train_len + max_len])
-        # fig.update_yaxes(range=[-6, 22])  # I hardcoded y values as they are not imp
+        fig.update_yaxes(
+            range=[
+                prediction.values().squeeze()[:max_len].min(),
+                prediction.values().squeeze()[:max_len].max()
+            ]
+        )
 
-    print(f'MAE of {feature} forecast is is: {darts.metrics.metrics.mae(val, prediction)}')
+    print(f'MAE of {feature} forecast is: {darts.metrics.metrics.mae(val, prediction)}')
 
     img_bytes = fig.to_image(format="png")
     display(Image(img_bytes))
