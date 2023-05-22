@@ -99,6 +99,8 @@ def display_results(
         )
 
     print(f'MAE of {feature} forecast is: {darts.metrics.metrics.mae(val, prediction)}')
+    print(f'RMSE of {feature} forecast is: {darts.metrics.metrics.rmse(val, prediction)}')
+    print(f'MSE of {feature} forecast is: {darts.metrics.metrics.mse(val, prediction)}')
 
     img_bytes = fig.to_image(format="png")
     display(Image(img_bytes))
